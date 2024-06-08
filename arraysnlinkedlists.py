@@ -109,6 +109,31 @@ class LinkedList:
             return
         LinkedList.head= LinkedList.head.next
 
+    def deleteattail(self):
+        if not self.head:
+            return
+        if not self.head.next:
+            self.head= None
+            return
+        second_last= self.head
+        while second_last.next.next:
+            second_last= second_last.next
+        second_last.next= None
+    
+    def instertatposition(self,data,position):
+        new_node= Node(data)
+        if position ==0:
+            new_node.next=self.head
+            self.head=new_node
+            return
+        current= self.head
+        for _ in range ( position - 1):
+            if not current:
+                raise IndexError("Position out of bounds")
+            current= current.next
+        new_node.next = current.next
+        current.next = new_node
+
     def printing(self):
         current=self.head
         while current:
@@ -121,6 +146,13 @@ I1.append(1)
 I1.append(2)
 I1.append(3)
 I1.printing()
-
+I1.insertathead(1)
+I1.printing()
+I1.deleteathead()
+I1.printing()
+I1.instertatposition(2,2)
+I1.printing()
+I1.deleteattail()
+I1.printing()
 
 
